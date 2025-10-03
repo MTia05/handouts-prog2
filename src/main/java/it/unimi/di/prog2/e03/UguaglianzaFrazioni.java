@@ -31,4 +31,20 @@ public class UguaglianzaFrazioni {
    * corrispondenti rispettivamente a numeratore e denominatore di due frazioni ed emetta nel flusso
    * d'uscita "uguali" se le frazioni sono uguali, oppure "diverse".
    */
+
+   public static void main(String[] args) {
+    int a;
+    int b;
+    int c;
+    int d;
+    a = Integer.parseInt(args[0]);
+    b = Integer.parseInt(args[1]);
+    c = Integer.parseInt(args[2]);
+    d = Integer.parseInt(args[3]);
+    if (a*d == b*c) {
+      System.out.print("uguali");
+    } else {
+      System.out.print("diverse");
+    }
+   }
 }
