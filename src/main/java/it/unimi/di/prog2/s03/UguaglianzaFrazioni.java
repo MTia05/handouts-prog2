@@ -19,32 +19,28 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 */
 
-package it.unimi.di.prog2.e03;
+package it.unimi.di.prog2.s03;
 
 /** Classe per la verifica dell'uguaglianza tra frazioni. */
 public class UguaglianzaFrazioni {
-  /** Costruttore privato per impedire l'istanziazione. */
+  /** . */
   private UguaglianzaFrazioni() {}
 
   /**
-   * Scrivere il metodo main che riceva come parametri sulla linea di comando quattro interi
-   * corrispondenti rispettivamente a numeratore e denominatore di due frazioni ed emetta nel flusso
-   * d'uscita "uguali" se le frazioni sono uguali, oppure "diverse".
+   * Riceve come parametri sulla linea di comando quattro interi corrispondenti rispettivamente a
+   * numeratore e denominatore di due frazioni ed emette nel flusso d'uscita "uguali" se le frazioni
+   * sono uguali, oppure "diverse".
+   *
+   * @param args i quattro interi
    */
+  public static void main(String[] args) {
+    int a = Integer.parseInt(args[0]);
+    int b = Integer.parseInt(args[1]);
+    int c = Integer.parseInt(args[2]);
+    int d = Integer.parseInt(args[3]);
 
-   public static void main(String[] args) {
-    int a;
-    int b;
-    int c;
-    int d;
-    a = Integer.parseInt(args[0]);
-    b = Integer.parseInt(args[1]);
-    c = Integer.parseInt(args[2]);
-    d = Integer.parseInt(args[3]);
-    if (a*d == b*c) {
-      System.out.print("uguali");
-    } else {
-      System.out.print("diverse");
-    }
-   }
+    /* Per una discussione del problema dell'equivalenza si veda https://stackoverflow.com/a/73394324 */
+
+    System.out.println((long) a * d == (long) b * c ? "uguali" : "diverse");
+  }
 }
