@@ -21,14 +21,33 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 package it.unimi.di.prog2.e05;
 
+import java.util.Scanner;
+
 /** Client for the {@link MathFunctions} class. */
 public class MathFunctionsClient {
 
-  /** . */
+  /** Costruttore privato per impedire l'istaziazione */
   private MathFunctionsClient() {}
 
   /* Write a client that reads a sequence of floating-point numbers from standard input, computes their square root
    * (when possible), and prints {@code true} or {@code false} depending on whether the result is
    * correct within {@code 10^-3} or not.
    */
+
+  /**
+   * Legge una sequenza di numeri floating-poind sa standard input e ne calcola la radice quadrata
+   * approssimata se possibile e restituisce {@code true} o {@code false} relativamente se il
+   * risultato è corretto con uno scarto di {@literal \( 10^{-3} \)}
+   *
+   * @param args .
+   */
+  public static void main(String[] args) {
+    try (Scanner scanner = new Scanner(System.in)) {
+      while (scanner.hasNextDouble()) {
+        double numero = scanner.nextDouble();
+        double radice = MathFunctions.sqrt(numero);
+        System.out.println(Math.abs(radice * radice - numero) < 0.001);
+      }
+    }
+  }
 }

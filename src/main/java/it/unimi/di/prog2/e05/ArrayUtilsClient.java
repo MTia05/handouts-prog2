@@ -21,14 +21,34 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 package it.unimi.di.prog2.e05;
 
+import java.util.Scanner;
+
 /** Client for the {@link ArrayUtils} class. */
 public class ArrayUtilsClient {
 
-  /** . */
+  /** Costruttore privato per impedire l'istanziazione. */
   private ArrayUtilsClient() {}
 
   /*
    * Write a client that reads 10 integers in increasing order from the standard input and prints
    * the index of the integer passed as argument on the command line if found.
+   *
    */
+
+  /**
+   * Riceve in ingresso da linea di comando un intero di cui si vuole sapere la posizione in un
+   * array riempito tramite standard input con un massimo di 10 valori interi ordinati.
+   *
+   * @param args il valore da cercare
+   */
+  public static void main(String[] args) {
+    int[] lista = new int[10];
+    try (Scanner scanner = new Scanner(System.in)) {
+      for (int i = 0; i < 10; i++) {
+        lista[i] = scanner.nextInt();
+      }
+    }
+    int indice = ArrayUtils.binarySearch(lista, Integer.parseInt(args[0]));
+    System.out.println(indice); // Stampa sempre l'indice, anche se è -1
+  }
 }

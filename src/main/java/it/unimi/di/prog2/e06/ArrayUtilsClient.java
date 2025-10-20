@@ -21,10 +21,12 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 package it.unimi.di.prog2.e06;
 
+import java.util.Scanner;
+
 /** Client code for {@link ArrayUtils}. */
 public class ArrayUtilsClient {
 
-  /** . */
+  /** Costruttore privato per impedire l'istanziazione. */
   private ArrayUtilsClient() {}
 
   /*
@@ -33,8 +35,17 @@ public class ArrayUtilsClient {
    * standard input and inserts them in the array if not already present,
    * keeping the array sorted and of the same size (discarding the last element
    * at every insertion). Finally, prints the array.
+   */
 
-   public static void main(String[] args) {
+  /**
+   * Riceve da riga di comando un intero {@code args[0]} che indica il numero di elementi dell'array
+   * da creare che verrà riempito con {@code MAX_VALUE}. Succecssivamente legge da standard input
+   * una serie di interi che inserisce nell'array se non sono già presenti, mantenendo l'array
+   * ordinato e della stessa dimensione. In fine stampa l'array.
+   *
+   * @param args args[0] contiene il numero di elementi dell'array.
+   */
+  public static void main(String[] args) {
 
     int size = Integer.parseInt(args[0]);
     int[] array = new int[size];
@@ -53,7 +64,4 @@ public class ArrayUtilsClient {
 
     ArrayUtils.print(array);
   }
-
-  */
-
 }

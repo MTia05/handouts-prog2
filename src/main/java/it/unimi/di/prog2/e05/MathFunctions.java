@@ -24,7 +24,7 @@ package it.unimi.di.prog2.e05;
 /** Utility class for computing mathematical functions. */
 public class MathFunctions {
 
-  /** . */
+  /** Costruttore privato per impedire l'istanziazione. */
   private MathFunctions() {}
 
   /* Specify and implement a method that given a positive number returns an approximation
@@ -32,4 +32,27 @@ public class MathFunctions {
    *
    * Hint: https://en.wikipedia.org/wiki/Bisection_method
    */
+
+  /**
+   * Dato un numero estrae se possibile la radice quandrata con un'approssimazione di {@literal
+   * \(10^{-6}\) }
+   *
+   * @param num {@literal \( numero \geq 0 \)}
+   * @return restituisce la radice quadrata approssimata di {@code num} tale che {@literal \( y -
+   *     num^2 \leq 1+10^{-6} \) }
+   */
+  public static double sqrt(double num) {
+    double inferiore = 0;
+    double superiore = num;
+    double mezzo = 0;
+    while (superiore - inferiore >= 1e-6) {
+      mezzo = (superiore + inferiore) / 2;
+      if (mezzo * mezzo - num > 0) {
+        superiore = mezzo;
+      } else {
+        inferiore = mezzo;
+      }
+    }
+    return mezzo;
+  }
 }

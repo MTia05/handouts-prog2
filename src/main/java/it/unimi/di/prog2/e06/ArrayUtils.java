@@ -29,7 +29,7 @@ import java.util.List;
     "doclint:missing") // this is because comments of methods to implement have yet to be added
 public class ArrayUtils {
 
-  /** . */
+  /** Costruttore privato per impedire l'istanziazione. */
   private ArrayUtils() {}
 
   /**
@@ -62,11 +62,55 @@ public class ArrayUtils {
    * insertionPoint} (inclusive) to the end of the array, and then inserts {@code value} at {@code
    * insertionPoint}.
    */
-  static void insertAt(int[] array, int insertionPoint, int value) {}
+
+  /**
+   * Prende in ingresso un {@code array} di interi, un indice e un valore intero e sposta di una
+   * posizione a destra ogni elemento partendo dall'indice fornito (l'ultimo elemento dell'{@code
+   * array} viene perso). Inserisce il valore {@code value} fornito nello spazio creato dopo lo
+   * spostamento degli elementi
+   *
+   * @param array di interi di lunghezza > 0 che viene modificato inserendo il {@code value}
+   *     all'indice {@code insertionPoint}
+   * @param insertionPoint indice in cui inserire {@code value}
+   * @param value il valore da inserire
+   * @throws IllegalArgumentException se {@code insertionPoint} è fuori dai limiti dell'array
+   */
+  static void insertAt(int[] array, int insertionPoint, int value) {
+    if (insertionPoint < 0 || insertionPoint >= array.length) {
+      throw new IllegalArgumentException("insertionPoint out ouf bounds.");
+    }
+
+    for (int i = array.length - 1; i > array.length; i--) {
+      array[i] = array[i - 1];
+    }
+
+    array[insertionPoint] = value;
+  }
 
   /* Specify and implement a method that fills the given array with the given value. */
-  static void fill(int[] array, int value) {}
+
+  /**
+   * Prende in ingresso un {@code array} e lo riempie con elementi di valore {@code value} fornito.
+   *
+   * @param array di interi di lunghezza > 0 che viene modificato
+   * @param value valore intero usato per riempire l'{@code array}
+   */
+  static void fill(int[] array, int value) {
+    for (int i = 0; i < array.length; i++) {
+      array[i] = value;
+    }
+  }
 
   /* Specify and implement a method that prints the given array, one element per line. */
-  static void print(int[] array) {}
+
+  /**
+   * Prende in ingresso un array di interi e ne stampa i valori uno per ogni riga.
+   *
+   * @param array di interi di lunghezza > 0
+   */
+  static void print(int[] array) {
+    for (int i = 0; i < array.length; i++) {
+      System.out.println(array[i]);
+    }
+  }
 }

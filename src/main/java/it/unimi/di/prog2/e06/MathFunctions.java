@@ -37,7 +37,12 @@ public class MathFunctions {
    * @return an approximation of the square root.
    */
   public static double sqrt(double x) {
+    if (x < 0) {
+      throw new IllegalArgumentException("La radrice quadrata è definita solo per i numeri non negativi");
+    }
 
+    return Math.sqrt(x);
+    
     // Provide an alternative implementation based on Newton's method.
     // Hint: https://math.mit.edu/~stevenj/18.335/newton-sqrt.pdf
 

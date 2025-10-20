@@ -34,13 +34,14 @@ public class SommaCentesimi {
    * Scrivere il metodo main che legga dal flusso di ingresso un elenco di importi in euro e
    * centesimi (uno per riga, con la parte decimale separata dalla parte intera da un punto) e ne
    * emetta nel flusso d'uscita la somma.
+   *
+   * @param args lallero
    */
-
-   public static void main(String[] args) {
+  public static void main(String[] args) {
     double somma = 0;
     double partenza = 0;
     int intero = 0;
-    try (Scanner scanner = new Scanner(System.in)){
+    try (Scanner scanner = new Scanner(System.in)) {
       scanner.useLocale(Locale.US); // per usare il "." per il decimali
       while (scanner.hasNextDouble()) {
         partenza = scanner.nextDouble();
@@ -48,7 +49,7 @@ public class SommaCentesimi {
         somma += intero;
       }
     }
-    somma = somma/100;
+    somma = somma / 100;
     System.out.println(somma);
-   }
+  }
 }
