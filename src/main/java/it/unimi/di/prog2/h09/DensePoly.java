@@ -64,6 +64,9 @@ public class DensePoly { // we don't extend Cloneable, see EJ 3.13
   /**
    * Returns the degree of this polynomial.
    *
+   * <p>The degree is defined as the largest exponent with a non-zero coefficient, except for the
+   * zero polynomial, whose degree is defined to be 0.
+   *
    * @return the largest exponent with a non-zero coefficient; returns 0 if this is the zero {@code
    *     Poly}.
    */
@@ -83,6 +86,15 @@ public class DensePoly { // we don't extend Cloneable, see EJ 3.13
   }
 
   /**
+   * Checks whether this polynomial is the zero polynomial.
+   *
+   * @return {@code true} if this polynomial is the zero polynomial, {@code false} otherwise.
+   */
+  public boolean isZero() {
+    return coefficient.length == 1 && coefficient[0] == 0;
+  }
+
+  /**
    * Performs polynomial addition.
    *
    * <p>If \( p \) is this polynomial, returns \( p + q \).
@@ -93,6 +105,8 @@ public class DensePoly { // we don't extend Cloneable, see EJ 3.13
    */
   public DensePoly add(DensePoly q) throws NullPointerException {
     Objects.requireNonNull(q, "The polynomial must not be null.");
+    if (isZero()) return q;
+    if (q.isZero()) return this;
     final DensePoly larger, smaller;
     if (degree() > q.degree()) {
       larger = this;
@@ -126,8 +140,7 @@ public class DensePoly { // we don't extend Cloneable, see EJ 3.13
    */
   public DensePoly mul(DensePoly q) throws NullPointerException {
     Objects.requireNonNull(q, "The polynomial must not be null.");
-    if ((q.degree() == 0 && q.coefficient[0] == 0) || (degree() == 0 && coefficient[0] == 0))
-      return new DensePoly();
+    if (isZero() || q.isZero()) return new DensePoly();
     DensePoly r = new DensePoly(degree() + q.degree());
     for (int i = 0; i <= degree(); i++)
       for (int j = 0; j <= q.degree(); j++)
@@ -146,6 +159,8 @@ public class DensePoly { // we don't extend Cloneable, see EJ 3.13
    */
   public DensePoly sub(DensePoly q) throws NullPointerException {
     Objects.requireNonNull(q, "The polynomial must not be null.");
+    if (isZero()) return q.minus();
+    if (q.isZero()) return this;
     return add(q.minus());
   }
 
@@ -157,6 +172,7 @@ public class DensePoly { // we don't extend Cloneable, see EJ 3.13
    * @return this polynomial multiplied by \( -1 \).
    */
   public DensePoly minus() {
+    if (isZero()) return this;
     DensePoly r = new DensePoly(degree());
     for (int i = 0; i <= degree(); i++) r.coefficient[i] = -coefficient[i];
     return r;
